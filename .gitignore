@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 .vscode
 
+heartrate_analysis_python
+__pycache__
+
 # Runtime data
 pids
 *.pid

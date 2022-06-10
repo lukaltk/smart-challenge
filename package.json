@@ -1,5 +1,5 @@
 {
-  "name": "idoso-cuidador",
+  "name": "senior-health",
   "version": "1.0.0",
   "description": "My Moleculer-based microservices project",
   "scripts": {
@@ -9,9 +9,12 @@
     "ci": "jest --watch",
     "test": "jest --coverage",
     "lint": "eslint services",
-    "dc:up": "docker-compose up --build -d",
+    "dc:build": "docker-compose -f docker-compose.yml up --build",
+    "dc:up": "docker-compose -f docker-compose.yml up -d",
+    "dc:down": "docker-compose down",
+    "dc:rm": "docker compose -f docker-compose.yml down -v --rmi all",
     "dc:logs": "docker-compose logs -f",
-    "dc:down": "docker-compose down"
+    "dc:exec": "docker exec -it smart-challenge sh"
   },
   "keywords": [
     "microservices",
@@ -25,12 +28,14 @@
     "moleculer-repl": "^0.6.6"
   },
   "dependencies": {
-    "moleculer-web": "^0.10.2",
+    "csv": "^6.1.0",
+    "csv-writer": "^1.6.0",
+    "ioredis": "^4.27.9",
+    "moleculer": "^0.14.16",
     "moleculer-db": "^0.8.15",
     "moleculer-db-adapter-mongo": "^0.4.13",
-    "nats": "^2.2.0",
-    "ioredis": "^4.27.9",
-    "moleculer": "^0.14.16"
+    "moleculer-web": "^0.10.2",
+    "nats": "^2.2.0"
   },
   "engines": {
     "node": ">= 12.x.x"

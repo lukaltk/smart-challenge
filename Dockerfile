@@ -1,6 +1,4 @@
-FROM node:current-alpine
-
-ENV NODE_ENV=production
+FROM node:16-alpine
 
 RUN mkdir /app
 WORKDIR /app

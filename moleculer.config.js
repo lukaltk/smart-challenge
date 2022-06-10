@@ -58,7 +58,7 @@ module.exports = {
 	// More info: https://moleculer.services/docs/0.14/networking.html
 	// Note: During the development, you don't need to define it because all services will be loaded locally.
 	// In production you can set it via `TRANSPORTER=nats://localhost:4222` environment variable.
-	transporter: null, //"NATS"
+	transporter: process.env.NODE_ENV === 'production' ? 'nats://nats:4222' : 'NATS', //"NATS"
 
 	// Define a cacher.
 	// More info: https://moleculer.services/docs/0.14/caching.html
@@ -203,7 +203,7 @@ module.exports = {
 
 	// Called after broker started.
 	async started(broker) {
-
+		broker.logger.info('Running with environment:', process.env.NODE_ENV || 'local');
 	},
 
 	// Called after broker stopped.

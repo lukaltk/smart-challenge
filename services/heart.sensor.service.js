@@ -10,6 +10,10 @@ const defaultEcgPath = './data/default.csv';
 
 const id = 'test';
 const pythonParams = [];
+let analysisFlag = false;
+let cacheFlag = false;
+
+var ecg = [];
 
 /*
 const path = './data/e0103.csv'
@@ -50,11 +54,10 @@ module.exports = {
 
         this.saveData(data);
 
-        if (!fs.existsSync(cachePath)) {
-          ctx.emit('analysis', cachePath);
-        } else {
-          await this.saveEcg(data, cachePath);
-        }
+        await this.saveEcg(data, cachePath);
+
+        cacheFlag = true;
+        ecg.push(...ctx.params.ecg);
 
         return data;
       }
@@ -105,27 +108,57 @@ module.exports = {
     },
 
     analysis: {
+      rest: {
+        method: 'GET',
+        path: '/analysis'
+      },
 
       async handler(ctx) {
 
-        const pythonAnalysis = execSync(`python "./lib/utils.py" 2 ${path} ${pythonInit[0]} ${pythonInit[1]}`).toString().slice(1, -3).split(', ');
-        console.log(pythonAnalysis);
+        const ecgResult = [...ecg];
+        ecg.length = 0;
 
-        return pythonAnalysis;
-      }
-    },
+        if (!analysisFlag && cacheFlag) {
+          analysisFlag = true;
+          try {
+            ctx.call('heart-analysis.analysis', { pythonParams });
 
-    test: {
-      async handler(ctx) {
-        return pythonParams;
+          } catch (error) {
+            this.logger.error(error);
+          }
+        }
+
+        return ecgResult;
       }
     }
   },
 
   events: {
-    analysis: {
+    analysisResult: {
       handler(ctx) {
-        console.log('event was called');
+        this.logger.info('Analysis completed', ctx.params);
+
+        if(ctx.params.status > 0 && ctx.params.status < 3) {
+          ctx.emit('alert')
+        } else if(ctx.params.status > 2) {
+          ctx.emit('dangerous')
+        }
+    
+        fs.rmSync(cachePath);
+        cacheFlag = false;
+        analysisFlag = false;
+      }
+    },
+
+    alert: {
+      handler(ctx) {
+        this.logger.warn('Alerta');
+      }
+    },
+
+    dangerous: {
+      handler(ctx) {
+        this.logger.warn('Perigo');
       }
     }
   },
@@ -145,6 +178,7 @@ module.exports = {
       pythonParams.push(...[data[0].min, data[0].max]);
       this.logger.info('Python init params:', pythonParams);
     }
+    cacheFlag = fs.existsSync(cachePath);
   },
 
   async stopped() { }

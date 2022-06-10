@@ -8,318 +8,13 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<link href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="shortcut icon" type="image/png" href="https://moleculer.services/icon/favicon-16x16.png"/>
+	<link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css”rel=”nofollow” integrity=”sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm” crossorigin=”anonymous”>
 	<script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
-	<style type="text/css">
-	html {
-		font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-		font-size: 18px;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
-
-	body {
-		padding: 0;
-		margin: 0;
-		color: black;
-		text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-		padding-bottom: 60px; /* footer */
-	}
-
-	.cursor-pointer {
-		cursor: pointer;
-		user-select: none;
-	}
-
-	header, footer {
-		text-align: center;
-		color: white;
-		text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-	}
-
-	header a, header a.router-link-exact-active,
-	footer a, footer a.router-link-exact-active
-	{
-		color: #63dcfd;
-	}
-
-	header {
-		background-image: linear-gradient(45deg, #e37682 0%, #5f4d93 100%);
-		padding: 1em;
-		box-shadow: 0 3px 10px rgba(0,0,0,0.6);
-		margin-bottom: 1em;
-	}
-
-	footer {
-		background-image: linear-gradient(135deg, #e37682 0%, #5f4d93 100%);
-		padding: 0.75em;
-		font-size: 0.8em;
-		box-shadow: 0 -3px 10px rgba(0,0,0,0.6);
-		position: fixed;
-		left: 0; right: 0; bottom: 0;
-		margin-top: 1em;
-	}
-
-	footer .footer-links {
-		margin-top: 0.5em;
-	}
-
-	footer .footer-links a {
-		margin: 0 0.5em;
-	}
-
-	a, a.router-link-exact-active {
-		color: #3CAFCE;
-		text-decoration: none;
-	}
-
-	nav ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	nav ul li {
-		display: inline-block;
-		padding: 0.25em 0.75em;
-		cursor: pointer;
-		font-weight: 300;
-		font-size: 1.25em;
-		border-bottom: 2px solid transparent;
-		transition: color .1s linear, border-bottom .1s linear;
-	}
-
-	nav ul li.active {
-		border-bottom: 2px solid #63dcfd;
-	}
-
-	nav ul li:hover {
-		color: #63dcfd;
-	}
-
-	button, .button {
-		background-color: #3CAFCE;
-		border: 0;
-		border-radius: 8px;
-		color: white;
-		font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
-		font-size: 16px;
-		font-weight: 400;
-		padding: 0.5em 1em;
-		box-shadow: 0 4px 6px -1px rgba(0,0,0,.2);
-		cursor: pointer;
-		user-select: none;
-	}
-
-	button i, .button i {
-		margin-right: 0.5em;
-	}
-
-	button:hover, .button:hover {
-		background-color: #4ba3bb;
-	}
-
-	code {
-		font-family: "Consolas", 'Courier New', Courier, monospace;
-		color: #555;
-	}
-
-	main {
-		max-width: 1260px;
-		margin: 0 auto;
-		padding: 1em 1em;
-	}
-
-	main section#home > .content {
-		text-align: center;
-	}
-
-	main section#home h1 {
-		font-size: 2em;
-		font-weight: 400;
-		margin-top: 0;
-	}
-
-	main section#home h3 {
-		font-size: 1.25em;
-		font-weight: 600;
-	}
-
-	pre.broker-options {
-		display: inline-block;
-		text-align: left;
-		font-size: 0.9em;
-	}
-
-	.boxes {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-	}
-
-	.boxes .box {
-		width: 200px;
-		padding: 0.25em 1em;
-		margin: 0.5em;
-		background: rgba(60, 175, 206, 0.1);
-
-		border: 1px solid grey;
-		border-radius: 0.25em;
-	}
-
-	.boxes .box .caption {
-		font-weight: 300;
-		font-size: 0.9em;
-		margin-bottom: 0.5em;
-	}
-
-	.boxes .box .value {
-		font-weight: 600;
-		font-size: 1.1em;
-	}
-
-	main input {
-		border: 1px solid #3CAFCE;
-		border-radius: 4px;
-		padding: 2px 6px;
-		font-family: "Source Sans Pro";
-	}
-
-	main fieldset {
-		border: 1px solid lightgrey;
-		border-radius: 8px;
-		box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-		background-color: aliceblue;
-		margin-bottom: 2em;
-	}
-
-	main fieldset legend {
-		background-color: #cce7ff;
-		border: 1px solid lightgrey;
-		padding: 4px 10px;
-		border-radius: 8px;
-	}
-
-	main fieldset .content {
-		padding-left: 2em;
-	}
-
-	main fieldset .request {
-		margin-bottom: 0.5em;
-	}
-
-	main fieldset .parameters .field {
-		margin-bottom: 0.25em;
-	}
-
-	main fieldset .parameters .field label {
-		min-width: 80px;
-		display: inline-block;
-		text-align: right;
-		margin-right: 0.5em;
-	}
-
-	main fieldset .response {
-		margin-top: 1em;
-	}
-
-	main fieldset .response pre {
-		margin: 0.5em 0;
-		font-size: 0.9em;
-	}
-
-	pre.json .string { color: #885800; }
-	pre.json .number { color: blue; }
-	pre.json .boolean { color: magenta; }
-	pre.json .null { color: red; }
-	pre.json .key { color: green; }
-
-	main h4 {
-		font-weight: 600;
-		margin: 0.25em -1.0em;
-	}
-
-	.badge {
-		display: inline-block;
-		background-color: dimgray;
-		color: white;
-    	padding: 2px 6px;
-	    border-radius: 7px;
-	    font-size: 0.7em;
-		font-weight: 600;
-	}
-
-	.badge.green {
-		background-color: limegreen;
-	}
-
-	.badge.red {
-		background-color: firebrick;
-	}
-
-	.badge.orange {
-		background-color: #fab000;
-		color: black;
-	}
-
-	table {
-		width: 100%;
-		/*max-width: 1000px;*/
-		border: 1px solid lightgrey;
-		border-radius: 8px;
-		background-color: aliceblue;
-    }
-
-    table th {
-		padding: 2px 4px;
-		background-color: #cce7ff;
-		border-radius: 4px;
-    }
-
-    table tr.offline td {
-		font-style: italic;
-		color: #777;
-    }
-
-    table tr.local td {
-    	/*color: blue;*/
-    }
-
-    table tr:not(:last-child) td {
-		border-bottom: 1px solid #ddd;
-    }
-
-    table td {
-		text-align: center;
-		position: relative;
-		padding: 2px 4px;
-    }
-
-    table th:nth-child(1), table td:nth-child(1) {
-		text-align: left
-    }
-
-	table tr.service td:nth-child(1) {
-		font-weight: bold;
-	}
-
-	table tr.action td:nth-child(1) {
-		padding-left: 2em;
-	}
-
-	table tr td:nth-child(2) {
-		font-family: monospace;
-		font-size: 0.8em;
-	}
-
-	.bar {
-		position: absolute;
-		left: 0; right: 0; top: 0; bottom: 0;
-		width: 0;
-		height: 100%;
-		background-color: rgba(0,0,0,0.3);
-	}
-</style>
+	<script src="plotly.min.js"></script>
+	<script type="text/javascript" src="../services/heart.sensor.service.js"></script>
+	<!--<link href="../services/heart.sensor.service.js" rel="import" />-->
 </head>
+
 <body>
 	<div id="app">
 		<header>
@@ -510,6 +205,36 @@
 			</div>
 		</footer>
 	</div>
+
+	<div id="grafico"></div>
+					<script type="text/javascript" >
+						function getData() {
+							return Math.random();
+						}
+						try{
+							Plotly.newPlot('grafico', [{
+								//y:[Array[]],
+								type: 'line'
+							}]);
+
+							var cont = 0;
+							setInterval(function(){
+								Plotly.extendTraces('grafico', {y:[ecg.shift()]}, [0]);
+								cont++;
+								if(cont > 120) {
+									Plotly.relayout('grafico', {
+										xaxis: {
+											range: [cont - 120, cont]
+										}
+									});
+								}
+							}, 1);
+						}
+						catch(e){
+						console.log(e);
+						}
+					</script>
+
 	<script type="text/javascript">
 		var app = new Vue({
 			el: "#app",

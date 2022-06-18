@@ -8,17 +8,23 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<link href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="shortcut icon" type="image/png" href="https://moleculer.services/icon/favicon-16x16.png"/>
-	<link rel=”stylesheet” href=”https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css”rel=”nofollow” integrity=”sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm” crossorigin=”anonymous”>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="stylesheet" href="index.css" type="text/css"/>
 	<script src="https://unpkg.com/vue@2.6.11/dist/vue.js"></script>
 	<script src="plotly.min.js"></script>
-	<script type="text/javascript" src="../services/heart.sensor.service.js"></script>
+	<!--<script type="text/javascript" src="../services/heart.sensor.service.js"></script>-->
 	<!--<link href="../services/heart.sensor.service.js" rel="import" />-->
 </head>
 
 <body>
 	<div id="app">
 		<header>
-			<a href="https://moleculer.services/docs/0.14/" target="_blank"><img class="logo" src="https://moleculer.services/images/logo/logo_with_text_horizontal_100h_shadow.png" /></a>
+			<!--<a href="https://moleculer.services/docs/0.14/" target="_blank"><img class="logo" src="https://moleculer.services/images/logo/logo_with_text_horizontal_100h_shadow.png" /></a>-->
+			<a style="font-size: 50px; font-family: monospace; color: #63dcfd;" target="_blank">
+				<div class="container">
+					<img class="logo" src="https://www.clipartmax.com/png/full/11-119187_size-heart-rate-icon-png.png" width="320" height="205" />  HEART MONITOR
+				</div>
+			</a>
 			<nav>
 				<ul>
 					<li v-for="item in menu" :class="{ active: page == item.id}" @click="changePage(item.id)">{{ item.caption }}</li>
@@ -27,58 +33,62 @@
 		</header>
 
 		<main>
-			<section id="home" v-if="page == 'home'">
+			<section id="dados" v-if="page == 'dados'">
 				<div class="content">
-					<h1>Welcome to your Moleculer microservices project!</h1>
-					<p>Check out the <a href="https://moleculer.services/docs/0.14/" target="_blank">Moleculer documentation</a> to learn how to customize this project.</p>
-
-					<template v-if="broker">
-						<h3>Configuration</h3>
-						<div class="boxes">
-							<div class="box">
-								<div class="caption">Namespace</div>
-								<div class="value">{{ broker.namespace || "&lt;not set&gt;" }}</div>
+					<div class="d-flex flex-column">
+						<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-2">
+								<a class="router-link-exact-active">Nome:</a>
 							</div>
-
-							<div class="box">
-								<div class="caption">Transporter</div>
-								<div class="value">{{ broker.transporter || "&lt;no transporter&gt;" }}</div>
+							<div class="col-md-4">
+								<a>João Pedro da Silva</a>
 							</div>
-
-							<div class="box">
-								<div class="caption">Serializer</div>
-								<div class="value">{{ broker.serializer || "JSON" }}</div>
+							<div class="col-md-1">
+								<a class="router-link-exact-active">Idade:</a>
 							</div>
-
-							<div class="box">
-								<div class="caption">Strategy</div>
-								<div class="value">{{ broker.registry.strategy || "Round Robin" }}</div>
-							</div>
-
-							<div class="box">
-								<div class="caption">Cacher</div>
-								<div class="value">{{ broker.cacher ? "Enabled" : "Disabled" }}</div>
-							</div>
-
-							<div class="box">
-								<div class="caption">Logger</div>
-								<div class="value">{{ broker.logger ? "Enabled" : "Disabled" }}</div>
-							</div>
-
-							<div class="box">
-								<div class="caption">Metrics</div>
-								<div class="value">{{ broker.metrics.enabled ? "Enabled" : "Disabled" }}</div>
-							</div>
-
-							<div class="box">
-								<div class="caption">Tracing</div>
-								<div class="value">{{ broker.tracing.enabled ? "Enabled" : "Disabled" }}</div>
+							<div class="col-md-1">
+								<a> 64 </a>
 							</div>
 						</div>
-
-						<h3 class="cursor-pointer" @click="showBrokerOptions = !showBrokerOptions">Broker options <i :class="'fa fa-angle-' + (showBrokerOptions ? 'up' : 'down')"></i></h3>
-						<pre v-if="showBrokerOptions" class="broker-options"><code>{{ broker }}</code></pre>
-					</template>
+						<div class="row">
+							<div class="col-md-2">
+								<a class="router-link-exact-active">Médico(a) Resp:</a>
+							</div>
+							<div class="col-md-4">
+								<a>Maria Julia Pereira Carvalho</a>
+							</div>
+							<div class="col-md-2">
+								<a class="router-link-exact-active">Contato de emerg.:</a>
+							</div>
+							<div class="col-md-4">
+								<a>(41) 99999-9999</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<a class="router-link-exact-active">Responsável:</a>
+							</div>
+							<div class="col-md-4">
+								<a>Silvana Abreu da Silva</a>
+							</div>
+							<div class="col-md-2">
+								<a class="router-link-exact-active">Contato do Resp.:</a>
+							</div>
+							<div class="col-md-4">
+								<a>(41) 98888-8888</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<a class="router-link-exact-active">Status:</a>
+							</div>
+							<div class="col-md-1">
+								<a class="status">ATIVO</a>
+							</div>
+						</div>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -124,7 +134,7 @@
 						<th>Version</th>
 						<th>IP</th>
 						<th>Hostname</th>
-						<th>Status</th>
+						<th>Hora/Data</th>
 						<th>CPU</th>
 					</thead>
 					<tbody>
@@ -147,44 +157,27 @@
 			<section id="services" v-if="page == 'services'">
 				<table>
 					<thead>
-						<th>Service/Action name</th>
-						<th>REST</th>
-						<th>Parameters</th>
-						<th>Instances</th>
+						
+						<th>Pressão</th>
+						<th>Oxigenação</th>
+						<th>Hora/Data</th>
 						<th>Status</th>
 					</thead>
 					<tbody>
-						<template v-for="svc in filteredServices">
+						<template v-for="svc in lista">
 							<tr class="service">
-								<td>
-									{{ svc.name }}
-									<div v-if="svc.version" class="badge">{{ svc.version }}</div>
+								<td style="text-align: left">
+									{{ svc[0] }}
+									<!--<div v-if="svc.version" class="badge">{{ svc.version }}</div>-->
 								</td>
-								<td>{{ svc.settings.rest ? svc.settings.rest : svc.fullName }}</td>
-								<td></td>
-								<td class="badges">
-									<div class="badge" v-for="nodeID in svc.nodes">
-										{{ nodeID }}
-									</div>
+								<td style="text-align: left">{{ svc[1] }}</td>
+								<td style="text-align: left">
+										{{ svc[2] }}
 								</td>
-								<td>
-									<div v-if="svc.nodes.length > 0" class="badge green">Online</div>
-									<div v-else class="badge red">Offline</div>
-								</td>
-							</tr>
-							<tr v-for="action in getServiceActions(svc)" :class="{ action: true, offline: !action.available, local: action.hasLocal }">
-								<td>
-									{{ action.name }}
-									<div v-if="action.action.cache" class="badge orange">cached</div>
-								</td>
-								<td v-html="getActionREST(svc, action)"></td>
-								<td :title="getActionParams(action)">
-									{{ getActionParams(action, 40) }}
-								</td>
-								<td></td>
-								<td>
-									<div v-if="action.available" class="badge green">Online</div>
-									<div v-else class="badge red">Offline</div>
+								<td style="text-align: left">
+									<div v-if="svc[3]=='Normal'" class="badge green">Normal</div>
+									<div v-if="svc[3]=='Alerta'" class="badge orange">Alerta</div>
+									<div v-if="svc[3]=='Perigo'" class="badge red">Perigo</div>
 								</td>
 							</tr>
 						</template>
@@ -195,66 +188,79 @@
 
 		<footer>
 			<div class="footer-copyright">
-				Copyright &copy; 2016-2020 - Moleculer
+				Copyright &copy; 2022
 			</div>
 			<div class="footer-links">
 				<a href="https://github.com/moleculerjs/moleculer" class="footer-link" target="_blank">Github</a>
-				<a href="https://twitter.com/MoleculerJS" class="footer-link" target="_blank">Twitter</a>
+				<!--<a href="https://twitter.com/MoleculerJS" class="footer-link" target="_blank">Twitter</a>
 				<a href="https://discord.gg/TSEcDRP" class="footer-link" target="_blank">Discord</a>
-				<a href="https://stackoverflow.com/questions/tagged/moleculer" class="footer-link" target="_blank">Stack Overflow</a>
+				<a href="https://stackoverflow.com/questions/tagged/moleculer" class="footer-link" target="_blank">Stack Overflow</a>-->
 			</div>
 		</footer>
 	</div>
 
-	<div id="grafico"></div>
-					<script type="text/javascript" >
-						function getData() {
-							return Math.random();
-						}
-						try{
-							Plotly.newPlot('grafico', [{
-								//y:[Array[]],
-								type: 'line'
-							}]);
+	<div>
+	<b style="font-size=larger; margin-left: 20px;">   	ECG:</b>
+	<div id="grafico" class="d-flex flex-column"></div>
+	</div>
+		<script>
+			function getData() {
+				return Math.random();
+			}
+			try{
+				Plotly.newPlot('grafico', [{
+					y:[getData()],
+					type: 'line'
+				}]);
+				var cont = 0;
+				
+				setInterval(function() {
+					Plotly.extendTraces('grafico', {y:[[getData()]]}, [0]);
+					cont++;
+					if(cont > 120) {
+						Plotly.relayout('grafico', {
+							xaxis: {
+								range: [cont - 120, cont]
+							}
+						});
+					}
+				}, 100);
+			}
+			catch(e){
+			console.log(e);
+			}
+		</script>
 
-							var cont = 0;
-							setInterval(function(){
-								Plotly.extendTraces('grafico', {y:[ecg.shift()]}, [0]);
-								cont++;
-								if(cont > 120) {
-									Plotly.relayout('grafico', {
-										xaxis: {
-											range: [cont - 120, cont]
-										}
-									});
-								}
-							}, 1);
-						}
-						catch(e){
-						console.log(e);
-						}
-					</script>
-
-	<script type="text/javascript">
+	<script type="text/javascript">		
 		var app = new Vue({
 			el: "#app",
 
 			data() {
 				return {
+					
+					lista: [["13/7", "91%", "09/06/2022 11:32:21", "Normal"],
+					["12/8", "91%", "09/06/2022 11:32:12", "Normal"],
+					["12/7", "95%", "09/06/2022 12:02:10", "Normal"],
+					["10/8", "90%", "09/06/2022 12:42:56", "Alerta"],
+					["12/8", "96%", "09/06/2022 13:05:35", "Normal"],
+					["12/8", "92%", "09/06/2022 13:37:17", "Normal"],
+					["9/6", "82%", "09/06/2022 14:11:29", "Perigo"],
+					["13/8", "93%", "09/06/2022 14:49:47", "Normal"]],
+					
 					menu: [
-						// { id: "home", caption: "Home" },
-						// { id: "greeter", caption: "Greeter service" },
+						 { id: "dados", caption: "Dados" },
+						// { id: "historico", caption: "Historico" },
 						// { id: "products", caption: "Products service" },
 						// { id: "nodes", caption: "Nodes" },
-						// { id: "services", caption: "Services" }
+						 { id: "services", caption: "Historico" }
 					],
-					page: "home",
+					page: "dados",
 
 					requests: {
-						greeter: [
-							{ id: "hello", action: "greeter.hello", rest: "/api/greeter/hello", response: null, status: null, duration: null },
+						historico: [
+							{ id: "hello", action: "historico.hello", rest: "/api/greeter/hello", response: null, status: null, duration: null },
 
-							{ id: "welcome", action: "greeter.welcome", rest: "/api/greeter/welcome", fields: [
+							{ id: "welcome", action: "historico.welcome", rest: "/api/greeter/welcome", fields: [
 								{ field: "name", label: "Name", type: "text", paramType: "param", model: "welcomeName" }
 							], response: null, status: null, duration: null }
 						],
@@ -306,6 +312,7 @@
 					services: [],
 					actions: {},
 
+
 					showBrokerOptions: false
 				};
 			},
@@ -317,6 +324,7 @@
 			},
 
 			methods: {
+				
 				changePage(page) {
 					this.page = page;
 					this.updatePageResources();
@@ -434,6 +442,7 @@
 				},
 
 				updateServiceList: function (name) {
+					
 					this.req("/api/~node/services?withActions=true", null)
 						.then(res => {
 							this.services = res;
@@ -465,13 +474,14 @@
 				}
 			},
 
-			mounted() {
+			mounted() {/*
 				var self = this;
 				setInterval(function () {
 					self.updatePageResources();
 				}, 2000);
 
 				this.updateBrokerOptions();
+				*/
 			}
 		});
 	</script>

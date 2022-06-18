@@ -13,7 +13,7 @@ const pythonParams = [];
 let analysisFlag = false;
 let cacheFlag = false;
 
-var ecg = [];
+const ecg = [];
 
 /*
 const path = './data/e0103.csv'

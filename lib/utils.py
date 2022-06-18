@@ -77,8 +77,8 @@ def run(end, med_minV, med_maxV):
   return [recalc_media(med_minV, med_min), recalc_media(med_maxV, med_max), fu] 
 
 if sys.argv[1] == 'init':
-  sys.stdout.flush()
-  print(init(str(sys.argv[2])))
+  ys.stdout.flush()
+  print(init(stsr(sys.argv[2])))
 
 elif sys.argv[1] == 'run':
   sys.stdout.flush()
@@ -86,3 +86,5 @@ elif sys.argv[1] == 'run':
 
 else:
   print('Nada')
+
+

@@ -28,6 +28,7 @@
     "moleculer-repl": "^0.6.6"
   },
   "dependencies": {
+    "bootstrap": "^5.2.0-beta1",
     "csv": "^6.1.0",
     "csv-writer": "^1.6.0",
     "ioredis": "^4.27.9",
